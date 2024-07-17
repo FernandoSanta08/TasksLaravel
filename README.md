@@ -1,66 +1,116 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Task Manager
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This is a basic CRUD (Create, Read, Update, Delete) application for managing tasks, built with Laravel.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Create a new task
+- View all tasks
+- Edit a task
+- Delete a task
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Requirements
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- PHP 8.2 or higher
+- Composer
+- Laravel 11.x
+- MySQL or any other supported database
+- Node
 
-## Learning Laravel
+## Installation
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/FernandoSanta08/TasksLaravel task-manager
+    cd task-manager
+    ```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+2. Install the dependencies:
+    ```bash
+    composer install
+    ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+3. Copy the `.env.example` file to `.env`:
+    ```bash
+    cp .env.example .env
+    ```
 
-## Laravel Sponsors
+4. Generate the application key:
+    ```bash
+    php artisan key:generate
+    ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+5. Configure your database settings in the `.env` file:
+    ```dotenv
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=task_manager
+    DB_USERNAME=your_username
+    DB_PASSWORD=your_password
+    ```
 
-### Premium Partners
+6. Run the database migrations:
+    ```bash
+    php artisan migrate
+    ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+7. Start the development server:
+    ```bash
+    php artisan serve
+    ```
 
-## Contributing
+## Usage
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Once the server is running, you can access the application at `http://localhost:8000`. From there, you can perform the following operations:
 
-## Code of Conduct
+- **Create a new task:** Click on the "Create Task" button and fill in the required details.
+- **View all tasks:** The homepage displays a list of all tasks.
+- **Edit a task:** Click on the "Edit" button next to the task you want to update.
+- **Delete a task:** Click on the "Delete" button next to the task you want to remove.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Routes
 
-## Security Vulnerabilities
+The application uses the following routes:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- `GET /tasks`: Display a listing of tasks.
+- `GET /tasks/create`: Show the form for creating a new task.
+- `POST /tasks`: Store a newly created task in storage.
+- `GET /tasks/{task}`: Display the specified task.
+- `GET /tasks/{task}/edit`: Show the form for editing the specified task.
+- `PUT /tasks/{task}`: Update the specified task in storage.
+- `DELETE /tasks/{task}`: Remove the specified task from storage.
 
-## License
+## API Routes
+- `GET /api/tasks`: Display a listing of tasks.
+- `POST /api/tasks`: Store a newly created task in storage.
+- `GET /api/tasks/{task}`: Display the specified task.
+- `PUT /api/tasks/{task}`: Update the specified task in storage.
+- `DELETE /api/tasks/{task}`: Remove the specified task from storage.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## POSTMAN API TEST
+
+There is a postman collection in the root folder containing some API Test.
+
+To test the API endpoints, a Postman collection is provided. You can execute this collection using Newman and generate an HTML report with `newman-reporter-htmlextra`.
+
+### Installation
+
+1. Install Newman globally:
+    ```bash
+    npm install -g newman
+    ```
+
+2. Install the htmlextra reporter globally:
+    ```bash
+    npm install -g newman-reporter-htmlextra
+    ```
+
+### Running the Collection
+
+1. Run the collection using Newman:
+    ```bash
+    newman run CRUD.postman_collection.json -e DEV.postman_environment -r htmlextra
+    ```
+
+2. After the collection has run, an HTML report will be generated in the current directory.
